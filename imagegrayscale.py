@@ -5,9 +5,26 @@ import cv2
 
 
 def training():
+    labels=[]
 
-    for i in range(7480):
-        print(i)
+    # Fills an array of filenames to labels
+    for i in range(7481):
+        #print(i)
+        if(i < 10):
+            labels.append("00000" + str(i) + ".txt")
+            print(labels[i])
+
+        elif(i >= 10 and i < 100):
+            labels.append("0000" + str(i) + ".txt")
+            print(labels[i])
+
+        elif(i >= 100 and i < 1000):
+            labels.append("000" + str(i) + ".txt")
+            print(labels[i])
+
+        else:
+            labels.append("00" + str(i) + ".txt")
+            print(labels[i])
 
 
 def testing():
