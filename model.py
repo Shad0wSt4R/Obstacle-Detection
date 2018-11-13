@@ -3,6 +3,35 @@ import cv2
 from keras.models import Sequential
 from keras.layers import Dense, Activation
 
+def deskew(img):
+    m = cv2.moments(img)
+    if abs(m['mu02']) < 1e-2:
+        # no deskewing needed. 
+        return img.copy()
+    # Calculate skew based on central momemts. 
+    skew = m['mu11']/m['mu02']
+    # Calculate affine transform to correct skewness. 
+    M = np.float32([[1, skew, -0.5*SZ*skew], [0, 1, 0]])
+    # Apply affine transform
+    img = cv2.warpAffine(img, M, (SZ, SZ), flags=cv2.WARP_INVERSE_MAP | cv2.INTER_LINEAR)
+    return img
+
+def hog():
+    winSize = (20,20)
+    blockSize = (10,10)
+    blockStride = (5,5)
+    cellSize = (10,10)
+    nbins = 9
+    derivAperture = 1
+    winSigma = -1.
+    histogramNormType = 0
+    L2HysThreshold = 0.2
+    gammaCorrection = 1
+    nlevels = 64
+    signedGradients = True
+
+    return cv2.HOGDescriptor(winSize,blockSize,blockStride,cellSize,nbins,derivAperture,winSigma,histogramNormType,L2HysThreshold,gammaCorrection,nlevels, useSignedGradients)
+
 def training():
     PATH_TO_LABELS = "training/label_2/"
     PATH_TO_IMAGES = "training/image_2/"
@@ -45,8 +74,19 @@ def training():
     svm.setType(cv2.ml.SVM_C_SVC)
     svm.setKernel(cv2.ml.SVM_RBF)
 
+    # image preprocessing
+    processed_img = []
+    hog_img = []
+    hog = hog()
+
+    for i in images:
+        processed_img.append(deskew(i))
+
+    for i in processed_img:
+        hog_img.append(hog.compute(i))
+
     #training
-    svm.train_auto(images, labels)
+    svm.trainAuto(hog_img, cv2.ml.ROW_SAMPLE, svmResp, 10, svm.getDefaultGridPtr(0), svm.getDefaultGridPtr(1), 0, 0, 0, 0, False)
 
     svm.save("digits_svm_model.yml")
 
