@@ -5,6 +5,7 @@ import cv2
 
 
 def training():
+    PATH_TO_LABELS = "training/label_2/"
     labels=[]
 
     # Fills an array of filenames to labels
