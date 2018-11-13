@@ -5,7 +5,8 @@ import cv2
 
 
 def training():
-    for i in range(7481)
+
+    for i in range(7480):
         print(i)
 
 
@@ -31,14 +32,14 @@ def main():
     print("Welcome to the Obstacle Detection Program!\n")
     choice = input("What you you like to do?\n\n1) Train\n2) Test")
 
-    if(choice == 1){
+    if(choice == 1):
         training()
-    }
-    elif(choice == 2){
+    
+    elif(choice == 2):
         testing()
-    }
-    else{
-    }
+    
+    else
+        print("Invalid choice")
 
 
 main()
