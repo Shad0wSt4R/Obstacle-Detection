@@ -2,7 +2,7 @@ import numpy as np
 import cv2
 import pandas as pd
 
-cap = cv2.VideoCapture("driving_vids/Downtown.mp4")
+cap = cv2.VideoCapture("driving_vids/car.mp4")
 frames_count, fps, width, height = cap.get(cv2.CAP_PROP_FRAME_COUNT), cap.get(cv2.CAP_PROP_FPS), cap.get(
     cv2.CAP_PROP_FRAME_WIDTH), cap.get(cv2.CAP_PROP_FRAME_HEIGHT)
 
@@ -22,7 +22,7 @@ width2, height2, channels = image.shape
 while True:
     ret, frame = cap.read()  # import image
     if not ret: #if vid finish repeat
-        frame = cv2.VideoCapture("driving_vids/Downtown.mp4")
+        frame = cv2.VideoCapture("driving_vids/car.mp4")
         continue
     if ret:  # if there is a frame continue with code
         image = cv2.resize(frame, (0, 0), None, ratio, ratio)  # resize image
