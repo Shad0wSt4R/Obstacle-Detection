@@ -16,7 +16,7 @@ def deskew(img):
     img = cv2.warpAffine(img, M, (SZ, SZ), flags=cv2.WARP_INVERSE_MAP | cv2.INTER_LINEAR)
     return img
 
-def hog():
+def Hog():
     winSize = (20,20)
     blockSize = (10,10)
     blockStride = (5,5)
@@ -28,7 +28,7 @@ def hog():
     L2HysThreshold = 0.2
     gammaCorrection = 1
     nlevels = 64
-    signedGradients = True
+    useSignedGradients = True
 
     return cv2.HOGDescriptor(winSize,blockSize,blockStride,cellSize,nbins,derivAperture,winSigma,histogramNormType,L2HysThreshold,gammaCorrection,nlevels, useSignedGradients)
 
@@ -75,15 +75,15 @@ def training():
     svm.setKernel(cv2.ml.SVM_RBF)
 
     # image preprocessing
-    processed_img = []
-    hog_img = []
-    hog = hog()
+    processed_img = np.array(ARRSIZE)
+    hog_img = np.array(ARRSIZE)
+    hog = Hog()
 
     for i in images:
-        processed_img.append(deskew(i))
+        np.append(processed_img, deskew(i))
 
     for i in processed_img:
-        hog_img.append(hog.compute(i))
+        np.append(hog_img, hog.compute(i))
 
     #training
     svm.trainAuto(hog_img, cv2.ml.ROW_SAMPLE, svmResp, 10, svm.getDefaultGridPtr(0), svm.getDefaultGridPtr(1), 0, 0, 0, 0, False)
