@@ -40,6 +40,15 @@ def training():
         else:
             images.append("00" + str(i) + ".png")
 
+    # We will be using a Support Vector Machine for training
+    svm = cv2.ml.SVM_create()
+    svm.setType(cv2.ml.SVM_C_SVC)
+    svm.setKernel(cv2.ml.SVM_RBF)
+
+    #training
+    svm.train_auto(images, labels)
+
+    svm.save("digits_svm_model.yml")
 
 def testing():
     cap = cv2.VideoCapture('driving_vids/Downtown.mp4')
