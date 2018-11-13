@@ -30,15 +30,15 @@ def testing():
 
 def main():
     print("Welcome to the Obstacle Detection Program!\n")
-    choice = input("What you you like to do?\n\n1) Train\n2) Test")
+    choice = input("What you you like to do?\n\n1) Train\n2) Test\n\n>>")
 
-    if(choice == 1):
+    if(choice == "1"):
         training()
     
-    elif(choice == 2):
+    elif(choice == "2"):
         testing()
     
-    else
+    else:
         print("Invalid choice")
 
 
