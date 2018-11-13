@@ -1,8 +1,7 @@
 import numpy as np
 import cv2
-#import keras
-#from keras import backend as K
-
+from keras.models import Sequential
+from keras.layers import Dense, Activation
 
 def training():
     PATH_TO_LABELS = "training/label_2/"
@@ -15,29 +14,32 @@ def training():
 
     # Fills an array of filenames to labels
     for i in range(ARRSIZE):
-        #print(i)
         if(i < 10):
             labels.append("00000" + str(i) + ".txt")
-            #print(labels[i])
 
         elif(i >= 10 and i < 100):
             labels.append("0000" + str(i) + ".txt")
-            #print(labels[i])
 
         elif(i >= 100 and i < 1000):
             labels.append("000" + str(i) + ".txt")
-            #print(labels[i])
 
         else:
             labels.append("00" + str(i) + ".txt")
-            #print(labels[i])
 
         # Fills an array full of image filenames
-        for i in range(ARRSIZE):
-            if():
-            elif():
-            elif():
-            else:
+    for i in range(ARRSIZE):
+        if(i < 10):
+            images.append("00000" + str(i) + ".png")
+
+        elif(i >= 10 and i < 100):
+            images.append("0000" + str(i) + ".png")
+
+        elif(i >= 100 and i < 1000):
+            images.append("000" + str(i) + ".png")
+
+        else:
+            images.append("00" + str(i) + ".png")
+
 
 def testing():
     cap = cv2.VideoCapture('driving_vids/Downtown.mp4')
