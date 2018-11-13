@@ -4,7 +4,8 @@ from keras.models import Sequential
 from keras.layers import Dense, Activation
 
 def deskew(img):
-    m = cv2.moments(img)
+    m = cv2.imread(img, 0)
+    print(m)
     if abs(m['mu02']) < 1e-2:
         # no deskewing needed. 
         return img.copy()
@@ -79,9 +80,11 @@ def training():
     hog_img = np.array(ARRSIZE)
     hog = Hog()
 
+    # Processes the images through a deskewing function
     for i in images:
         np.append(processed_img, deskew(i))
 
+    # Applies the HOG descriptor
     for i in processed_img:
         np.append(hog_img, hog.compute(i))
 
