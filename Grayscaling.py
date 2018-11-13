@@ -47,7 +47,8 @@ while True:
         #cv2.imshow("dilation", dilation) #@
 
         retvalbin, bins = cv2.threshold(dilation, 220, 255, cv2.THRESH_BINARY)  # removes the shadows
-        cv2.imshow("retvalbin", retvalbin) #@
+        #cv2.imshow("retvalbin", retvalbin) #@
+
         # creates contours
         # cv2.imshow('bins',bins)
         im2, contours, hierarchy = cv2.findContours(bins, cv2.RETR_EXTERNAL, cv2.CHAIN_APPROX_SIMPLE)
