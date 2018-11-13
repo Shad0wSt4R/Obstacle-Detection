@@ -45,30 +45,30 @@ def training():
     # Fills an array of filenames to labels
     for i in range(ARRSIZE):
         if(i < 10):
-            labels.append("00000" + str(i) + ".txt")
+            labels.append(PATH_TO_LABELS + "00000" + str(i) + ".txt")
 
         elif(i >= 10 and i < 100):
-            labels.append("0000" + str(i) + ".txt")
+            labels.append(PATH_TO_LABELS + "0000" + str(i) + ".txt")
 
         elif(i >= 100 and i < 1000):
-            labels.append("000" + str(i) + ".txt")
+            labels.append(PATH_TO_LABELS + "000" + str(i) + ".txt")
 
         else:
-            labels.append("00" + str(i) + ".txt")
+            labels.append(PATH_TO_LABELS + "00" + str(i) + ".txt")
 
         # Fills an array full of image filenames
     for i in range(ARRSIZE):
         if(i < 10):
-            images.append("00000" + str(i) + ".png")
+            images.append(PATH_TO_IMAGES + "00000" + str(i) + ".png")
 
         elif(i >= 10 and i < 100):
-            images.append("0000" + str(i) + ".png")
+            images.append(PATH_TO_IMAGES + "0000" + str(i) + ".png")
 
         elif(i >= 100 and i < 1000):
-            images.append("000" + str(i) + ".png")
+            images.append(PATH_TO_IMAGES + "000" + str(i) + ".png")
 
         else:
-            images.append("00" + str(i) + ".png")
+            images.append(PATH_TO_IMAGES + "00" + str(i) + ".png")
 
     # We will be using a Support Vector Machine for training
     svm = cv2.ml.SVM_create()
