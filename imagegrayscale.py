@@ -6,27 +6,38 @@ import cv2
 
 def training():
     PATH_TO_LABELS = "training/label_2/"
+    PATH_TO_IMAGES = "training/image_2/"
+    ARRSIZE=7481
     labels=[]
+    images=[]
+
+    print("Filling arrays...")
 
     # Fills an array of filenames to labels
-    for i in range(7481):
+    for i in range(ARRSIZE):
         #print(i)
         if(i < 10):
             labels.append("00000" + str(i) + ".txt")
-            print(labels[i])
+            #print(labels[i])
 
         elif(i >= 10 and i < 100):
             labels.append("0000" + str(i) + ".txt")
-            print(labels[i])
+            #print(labels[i])
 
         elif(i >= 100 and i < 1000):
             labels.append("000" + str(i) + ".txt")
-            print(labels[i])
+            #print(labels[i])
 
         else:
             labels.append("00" + str(i) + ".txt")
-            print(labels[i])
+            #print(labels[i])
 
+        # Fills an array full of image filenames
+        for i in range(ARRSIZE):
+            if():
+            elif():
+            elif():
+            else:
 
 def testing():
     cap = cv2.VideoCapture('driving_vids/Downtown.mp4')
