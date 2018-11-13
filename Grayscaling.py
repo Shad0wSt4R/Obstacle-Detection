@@ -27,19 +27,25 @@ while True:
     if ret:  # if there is a frame continue with code
         image = cv2.resize(frame, (0, 0), None, ratio, ratio)  # resize image
         cv2.imshow("image", image) #@
+        
         gray = cv2.cvtColor(image, cv2.COLOR_BGR2GRAY)  # converts image to gray
         cv2.imshow("gray", gray) #@
+        
         fgmask = sub.apply(gray)  # uses the background subtraction
         cv2.imshow("fgmask", fgmask) #@
         # applies different thresholds to fgmask to try and isolate cars
         # just have to keep playing around with settings until cars are easily identifiable
+        
         kernel = cv2.getStructuringElement(cv2.MORPH_ELLIPSE, (5, 5))  # kernel to apply to the morphology
         closing = cv2.morphologyEx(fgmask, cv2.MORPH_CLOSE, kernel)
         cv2.imshow("closing", closing) #@
+        
         opening = cv2.morphologyEx(closing, cv2.MORPH_OPEN, kernel)
-        cv2.imshow("opening", opening) #@
+        #cv2.imshow("opening", opening) #@
+
         dilation = cv2.dilate(opening, kernel)
-        cv2.imshow("dilation", dilation) #@
+        #cv2.imshow("dilation", dilation) #@
+
         retvalbin, bins = cv2.threshold(dilation, 220, 255, cv2.THRESH_BINARY)  # removes the shadows
         cv2.imshow("retvalbin", retvalbin) #@
         # creates contours
