@@ -5,6 +5,7 @@ def training():
     model = Sequential()
 
 def testing():
+    model = Sequential()
 
 def main():
     print("Welcome to the image recognition program. What would you like to do?\n"+
