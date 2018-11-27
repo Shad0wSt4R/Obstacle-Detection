@@ -48,4 +48,6 @@ model.compile(optimizer='Adam', loss='categorical_crossentcopy',metrics=['accura
 step_size_train=train_generator.n/train_generator.batch_size
 model.fit_generator(generator=train_generator,steps_per_epoch=step_size_train, epochs=10)
 
+model.save("model.h5")
+
 
